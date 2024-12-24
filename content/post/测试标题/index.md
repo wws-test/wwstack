@@ -3,7 +3,6 @@ title: 后陈经验
 description: “后陈经验”是指浙江省武义县后陈村在2004年6月18日创建的村务监督委员会这一基层民主监督制度。以下是对“后陈经验”的详细解释：
 date: 2024-12-22 00:00:00+0000
 image: contact-bg.jpg
-weight: 1       # You can add weight to some posts to override the default sorting (date descending)
 ---
 # 后陈经验
 
