@@ -3,8 +3,6 @@ name: Deploy to Github Pages
 on:
     push:
         branches: [master]
-    pull_request:
-        branches: [master]
 
 jobs:
     build:
@@ -45,7 +43,7 @@ jobs:
             - name: Deploy 🚀
               uses: JamesIves/github-pages-deploy-action@v4
               with:
-                  branch: gh-pages
+                  branch: master
                   folder: public
                   clean: true
                   single-commit: true
