@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>素味挽风</title><link>https://wws-test.github.io/wwstack/</link><description>Recent content on 素味挽风</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 23 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://wws-test.github.io/wwstack/index.xml" rel="self" type="application/rss+xml"/><item><title>Cursor 食用指南</title><link>https://wws-test.github.io/wwstack/p/cursor-%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97/</link><pubDate>Mon, 23 Dec 2024 00:00:00 +0000</pubDate><guid>https://wws-test.github.io/wwstack/p/cursor-%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97/</guid><description>&lt;img src="https://wws-test.github.io/wwstack/p/cursor-%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97/404-bg.jpg" alt="Featured image of post Cursor 食用指南" />&lt;p>作为一个AI 辅助编程的深度用户。&lt;/p>
+&lt;p>下面这几句话是我认为你最需要知道也是对你最有帮助的，哪怕不看下面的技巧，我也推荐你花几秒钟看看。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">一、LLM 上下文是受限的，且上下文越多，它越难捕获到你的意图。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">二、LLM 输出是严重受限的，目前常用的最多为 8192 Tokens。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">三、无论是Cursor、Windsurf、Copilot还是Cline，它们都只是你的助手，请全程参与并把握主导权和决策权。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>下面是一些技巧，希望能帮到你。&lt;/p>
+&lt;h2 id="agent-模式使用技巧">Agent 模式使用技巧
+&lt;/h2>&lt;h3 id="搜索代替指定">搜索代替指定
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">理由：使用 cursor agent模式的搜索功能比手动指定文件效果好，因为它能获取更多相关上下文，而不是只读取文件的开头部分，避免添加无关的干扰信息。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>因为你指定文件的话，它只会读取开头一两百行，可能都读不到你想要它修改的函数，然后这时候上下文又会多一大堆没用的干扰信息，也就是会出现各位所说的变傻&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;ul>
+&lt;li>
+&lt;p>移除 context 指定，触发 agent 模式的自动搜索&lt;/p>
+&lt;p>同时改为在描述中提供:&lt;/p>
+&lt;p>明确的方法名&lt;/p>
+&lt;p>关键类名&lt;/p>
+&lt;p>相关变量名&lt;/p>
+&lt;p>具体功能描述&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="文档处理">文档处理
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">理由：文档是额外信息，chat中请只保留最关键的指示信息和引导信息。过多的信息会干扰模型对你需求的理解。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;pre>&lt;code>避免直接粘贴
+&lt;/code>&lt;/pre>
+&lt;p>不要在编辑框直接添加大量文档
+使用文档配置功能
+文档指定&lt;/p>
+&lt;pre>&lt;code>仅为项目共享必要的数据，而不是所有项目的文档均共享。
+&lt;/code>&lt;/pre>
+&lt;p>推荐仅添加训练数据无法覆盖的内容，如：&lt;/p>
+&lt;p>新的库文档、&lt;/p>
+&lt;p>开发接口文档。&lt;/p>
+&lt;p>文档自己写最好（要求就是精炼，和强烈的个人编码风格），仅提供方法使用教程，简短文字描述，便于切片和索引。&lt;/p>
+&lt;ul>
+&lt;li>文档链接配置方式&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://github.com/xxxx//main/docs/xxx.md
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>使用 GitHub 仓库存储文档&lt;/li>
+&lt;li>也可使用云存储服务（如阿里云 OSS）&lt;/li>
+&lt;/ul>
+&lt;h3 id="上下文管理">上下文管理
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">理由：cursor是一个助手，而不是决策专家，有时候人动动脑子做个决策就是它望尘莫及的了。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>避免提供过多文档导致上下文溢出&lt;/li>
+&lt;li>确保关键指令不被忽略&lt;/li>
+&lt;li>优先提供必要的上下文信息&lt;/li>
+&lt;li>学会将问题分解，解决一个问题使用一个chat。&lt;/li>
+&lt;/ul>
+&lt;h3 id="前端须知">前端须知
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">当你费劲口舌跟它辩论UI问题，不如甩它一张截图，也许你会有意外的发现。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="常见问题处理">常见问题处理
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>搜索不准确&lt;/p>
+&lt;blockquote>
+&lt;p>提供更精确的关键词&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>使用完整的方法名/类名&lt;/p>
+&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>checkpoints 不会回退？&lt;/p>
+&lt;blockquote>
+&lt;p>每个checkpoints旁边均有一个restore按钮，点击即可回到当时的状态。。&lt;/p>
+&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>如何为composer配置自定义（自己提供Key）模型？&lt;/p>
+&lt;p>（0.44.8似乎可以了，但需要官Key）
+没有办法。cursor的composer不会使用用户配置的自定义key。如有这个需求，请试试Cline，这是一个非常好用的agent（缺点：无checkpoints，行级处理导致无法一次ctrl+z撤销，也就是会在timeline留下很多修改过程中的脏版本，这是我对我来说最不喜欢的一点）。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>实现新功能，但代码散落在多个文件？&lt;/p>
+&lt;p>不需要提供context，只需要在agent模式下的聊天框中提供文件名和涉及到的必要的接口描述以及新功能描述即可（非必要请勿指定context，特别是文件几百上千行时）。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果我想让AI总结项目，生成开发指南，但不想让他修改代码该怎么办？&lt;/p>
+&lt;p>首先，我们要明确一点，LLM上下文和输出都是受限的，所以寻常的Chat模式必定是无法使用的，因为你不可能将所有代码一次性全部提供给它，它也不可能给你生成几万行的开发指南。&lt;/p>
+&lt;p>所以，我们需要使用具有agent功能的工具，如：cursor compose里面的agent模式，或者cline工具，这些工具本质上是由一个决策者和多个执行者组成，决策者负责制定完成任务所需要进行的操作步骤，再交由执行者去执行，决策和执行都是单独的一次Chat。&lt;/p>
+&lt;p>那么，思路就很简单了。1、拿到项目文件目录接口，由决策者生成阅读指南，相当于你的leader教你如何阅读项目。2、让执行者根据决策者生成的阅读指南，逐个文件阅读并生成文件内容概要、函数接口概要，将阅读结果保留到/docs目录下的项目同结构md文件下（如：src/hello/prompt.py（提供一些prompt常量） =&amp;gt; docs/src/hello/prompt.md，src/hello/fillPrompt.py（提供一些工具函数，来操作prompt里面定义的变量等信息） =&amp;gt; docs/src/hello/fillPrompt.md）。3、所有的执行者阅读完后，再交由思考者，逐个文件夹总结归纳（例如：docs/src/hello/下有prompt.md和fillPropmt.md，对齐总结归纳后会得到docs/src/hello.md），如此循环递归向上，直到得到最终的docs.md，这便是我们所需要的项目开发指南。&lt;/p>
+&lt;p>实现：（待续，内容有点多，有需要再继续写）如果你使用cline，那么请你创建一个MCP工具，用于获取项目目录和文件结构，并需要能标注和获取已经浏览和归纳总结过的文件。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>但我认为高版本的Cursor从0.43开始更新这么多不实用的功能，不如用0.42.6的支持长上下文的模型效果来的好&lt;/p>
+&lt;p>其实如果大家能意识到我开头讲得三点，那么很多问题都是有解决方案的。&lt;/p>
+&lt;p>并且高版本提供了更多的功能（虽然也带来了一些抉择）。&lt;/p>
+&lt;p>比如：checkpoints、agent、多agent共享记忆等。&lt;/p>
+&lt;p>其中显式checkpoints对我而言是最有用的，因为我可以肆无忌惮的就一个功能实现进行任意轮次对话，直到我满意为止，或者不满意，我可以直接checkout到我一开始进行的对话之前的状态，而不用担心任何代码的错误变动。&lt;/p>
+&lt;p>而对于没有提供checkpoints功能的工具，如cline。&lt;/p>
+&lt;p>我就得使用git分支管理，一个功能修改我必须先checkout到一个新分支，然后每次修改前做一次提交备份数据，在它修改后再提交再备份，如此手动循环修改、备份、不满意回退，这对我而言是非常低效的。&lt;/p>
+&lt;p>技巧一定是有用的，特别是对于这类AI工具。但是Cursor现在经常会产生错觉，我个人认为是上下文窗口的问题，即使用@来指定文件也存在，但是新出的极速模式确实很适合用来让AI来调试用，只能说目前需要根据自己的需求取舍。&lt;/p>
+&lt;p>也许我在文中已经有所强调&lt;/p>
+&lt;p>另外，如果要手动指定context，请切换回normal模式，效果会比你用agent模式强上不少。但还是不建议在一个Chat里面提供过量的上下文信息。&lt;/p>
+&lt;p>是的 如果具有自己定位问题的能力的话当然不成问题
+但是因为个人水平有限 很多时候没法精准的定位到问题出现的原因 所以只能依靠AI自查
+当然也不是否定佬友的方法&lt;/p>
+&lt;p>非常有用的分享，之前使用cursor时总是把握不好尺度，小问题有时候tab补全就出来了，大问题又不知道怎么描述，有时候功能分散在好几个文件里感觉mention也不太好用，不知道如何描述让他去解决。
+我使用cursor的场景主要是fork别人的项目代码，然后在此基础上魔改或者拼凑（苦逼的研究生），有些人写的代码还挺规范。但碰上有些项目代码，我作为人类都难以定位到功能实现的地方并上手更改（当然可能是我能力比较菜），不知道cursor能否直接来做？&lt;/p>
+&lt;p>佬，请问如何强制触发 cursor agent模式&lt;/p>
+&lt;p>如果你的版本支持，那么composer页面或弹窗下面的聊天框右下角会有如下选项（normal和agent），选中agent时为白色，且鼠标悬浮会提示你正在使用agent模式。&lt;/p>
+&lt;p>我的cursor是最新版本，但确实没有（normal和agent）&lt;/p>
+&lt;p>不好意思，找到啦，非常感谢佬友的分享。&lt;/p>
+&lt;p>也许你是在chat模式？&lt;/p>
+&lt;p>手动切换到composer页面，或者使用快捷键 ctrl + i。&lt;/p></description></item><item><title>行业振兴 百搭模版</title><link>https://wws-test.github.io/wwstack/p/%E8%A1%8C%E4%B8%9A%E6%8C%AF%E5%85%B4-%E7%99%BE%E6%90%AD%E6%A8%A1%E7%89%88/</link><pubDate>Mon, 23 Dec 2024 00:00:00 +0000</pubDate><guid>https://wws-test.github.io/wwstack/p/%E8%A1%8C%E4%B8%9A%E6%8C%AF%E5%85%B4-%E7%99%BE%E6%90%AD%E6%A8%A1%E7%89%88/</guid><description>&lt;img src="https://wws-test.github.io/wwstack/p/%E8%A1%8C%E4%B8%9A%E6%8C%AF%E5%85%B4-%E7%99%BE%E6%90%AD%E6%A8%A1%E7%89%88/tag-bg.jpg" alt="Featured image of post 行业振兴 百搭模版" />&lt;h2 id="税收优惠补贴强研发创新有保障">税收优惠补贴强，研发创新有保障。
+&lt;/h2>&lt;p>解释：税收减免和财政补贴鼓励潮玩企业加大研发投入。&lt;/p>
+&lt;h2 id="专项资金助关键ip打造品牌传">专项资金助关键，IP打造品牌传。
+&lt;/h2>&lt;p>解释：产业发展专项资金扶持重点项目和品牌推广。&lt;/p>
+&lt;h2 id="知识产权严保护创新环境更洁清">知识产权严保护，创新环境更洁清。
+&lt;/h2>&lt;p>解释：加强知识产权保护，营造良好创新环境。&lt;/p>
+&lt;h2 id="基础设施完善好物流配送效率高">基础设施完善好，物流配送效率高。
+&lt;/h2>&lt;p>解释：完善交通、物流等基础设施，提高产业发展效率。&lt;/p>
+&lt;h2 id="产业集聚效应显资源共享合作欢">产业集聚效应显，资源共享合作欢。
+&lt;/h2>&lt;p>解释：规划建设产业园区，促进产业集群效应。&lt;/p>
+&lt;h2 id="交流合作平台搭技术市场共拓展">交流合作平台搭，技术市场共拓展。
+&lt;/h2>&lt;p>解释：举办各类活动，加强企业间和产学研合作。&lt;/p>
+&lt;h2 id="人才培养体系建产学研用结合紧">人才培养体系建，产学研用结合紧。
+&lt;/h2>&lt;p>解释：加强人才培养和产学研合作，提升行业素质。&lt;/p>
+&lt;h2 id="高端人才引进来创新能力大提升">高端人才引进来，创新能力大提升。
+&lt;/h2>&lt;p>解释：吸引高端人才，注入新活力和创造力。&lt;/p>
+&lt;h2 id="人才培训服务好业务水平上新高">人才培训服务好，业务水平上新高。
+&lt;/h2>&lt;p>解释：开展专业培训，提高从业人员素质。&lt;/p>
+&lt;h2 id="国内外市场齐拓展品牌影响力提升快">国内外市场齐拓展，品牌影响力提升快。
+&lt;/h2>&lt;p>解释：支持企业参加展会，拓展国内外市场。&lt;/p>
+&lt;h2 id="跨界融合新路径应用场景更广阔">跨界融合新路径，应用场景更广阔。
+&lt;/h2>&lt;p>解释：推动潮玩与其他产业融合发展，拓展市场空间。&lt;/p>
+&lt;h2 id="宣传推广力度大潮玩文化众人夸">宣传推广力度大，潮玩文化众人夸。
+&lt;/h2>&lt;p>解释：加强宣传推广，提高潮玩行业认知度。&lt;/p>
+&lt;h2 id="质量标准体系立产品质量有保障">质量标准体系立，产品质量有保障。
+&lt;/h2>&lt;p>解释：制定质量标准，提高产品质量和安全性。&lt;/p>
+&lt;h2 id="市场监管力度强公平竞争环境良">市场监管力度强，公平竞争环境良。
+&lt;/h2>&lt;p>解释：加强市场监管，维护市场秩序。&lt;/p>
+&lt;h2 id="行业自律共推动健康有序发展长">行业自律共推动，健康有序发展长。
+&lt;/h2>&lt;p>解释：引导企业自律，推动行业健康发展。&lt;/p></description></item><item><title>后陈经验</title><link>https://wws-test.github.io/wwstack/p/%E5%90%8E%E9%99%88%E7%BB%8F%E9%AA%8C/</link><pubDate>Sun, 22 Dec 2024 00:00:00 +0000</pubDate><guid>https://wws-test.github.io/wwstack/p/%E5%90%8E%E9%99%88%E7%BB%8F%E9%AA%8C/</guid><description>&lt;img src="https://wws-test.github.io/wwstack/p/%E5%90%8E%E9%99%88%E7%BB%8F%E9%AA%8C/contact-bg.jpg" alt="Featured image of post 后陈经验" />&lt;h1 id="后陈经验">后陈经验
+&lt;/h1>&lt;p>起源与发展
+起源时间与事件：&lt;/p>
+&lt;p>2004年6月18日，后陈村创造性地建立了村务监督委员会。&lt;/p>
+&lt;h2 id="早期背景">早期背景
+&lt;/h2>&lt;p>当时该村因财务不透明等问题引发村民不满和社会矛盾。&lt;/p>
+&lt;h2 id="创新举措的意义">创新举措的意义
+&lt;/h2>&lt;p>此举旨在解决村级民主监督缺失的问题，并探索出一条有效治理农村基层社会的新路子。&lt;/p>
+&lt;h2 id="核心内容与特点">核心内容与特点
+&lt;/h2>&lt;h3 id="独立性">独立性
+&lt;/h3>&lt;p>监督委员会与村“两委”（党委和村民委员会）是平行机构，独立行使监督权。&lt;/p>
+&lt;h3 id="制度设计">制度设计
+&lt;/h3>&lt;p>明确了职责范围和工作流程，包括重大事项决策、财务收支审核等方面。&lt;/p>
+&lt;h3 id="民主选举产生">民主选举产生
+&lt;/h3>&lt;p>监督委员会成员通过村民代表会议民主选举产生，并接受村民监督。&lt;/p>
+&lt;h3 id="有效监督实践">有效监督实践
+&lt;/h3>&lt;p>实施多年来成功遏制了村干部滥用权力和不正之风。&lt;/p>
+&lt;h2 id="扩展影响与推广价值">扩展影响与推广价值
+&lt;/h2>&lt;h3 id="全国推广">全国推广
+&lt;/h3>&lt;p>被写入《中华人民共和国村民委员会组织法》，成为国家法律法规的一部分。&lt;/p>
+&lt;h3 id="获奖认可">获奖认可
+&lt;/h3>&lt;p>多次荣获国家级荣誉奖项，例如“全国村务公开民主管理制度创新奖”。&lt;/p>
+&lt;h3 id="学术研究与实践借鉴">学术研究与实践借鉴
+&lt;/h3>&lt;p>引起了国内外学者和政策研究者的广泛关注，并成为基层治理案例研究的经典素材。&lt;/p>
+&lt;h2 id="最新动态与应用升级">最新动态与应用升级
+&lt;/h2>&lt;p>近年来，“后陈经验”不断创新升级，在原有基础上增加了如“云上监督”、数字化应用等现代化管理手段。&lt;/p>
+&lt;h2 id="社会影响及意义总结">社会影响及意义总结
+&lt;/h2>&lt;p>“后陈经验”不仅提高了农村治理的透明度和公信力，还促进了社会和谐稳定。&lt;/p>
+&lt;p>它证明了基层民主制度的强大生命力和适应性，为中国广大农村地区的民主管理和监督提供了宝贵的经验和示范作用。&lt;/p>
+&lt;p>综上所述，“后陈经验”不仅仅是一种简单的制度创新，更代表了中国特色社会主义民主政治在基层的具体实践和发展成果。&lt;/p>
+&lt;h2 id="后陈经验的意义总结">“后陈经验”的意义总结
+&lt;/h2>&lt;p>“后陈经验”自诞生以来，已经成为中国农村基层民主监督制度建设的典范。它的出现和发展，不仅为解决村级民主监督缺失问题提供了有效途径，而且推动了农村基层治理体系和治理能力的现代化。&lt;/p>
+&lt;h3 id="一提升了农村治理的透明度和公信力">一、提升了农村治理的透明度和公信力
+&lt;/h3>&lt;p>通过建立独立的村务监督委员会，实现了对村级事务的全面监督，确保了村民的知情权、参与权和监督权。这种透明化的治理模式，有效增强了村民对村“两委”的信任度，提升了农村社会的整体公信力。&lt;/p>
+&lt;h3 id="二促进了社会和谐稳定">二、促进了社会和谐稳定
+&lt;/h3>&lt;p>“后陈经验”通过遏制村干部滥用权力和不正之风，减少了社会矛盾和冲突的发生。村民们能够更加积极地参与到村庄的建设和管理中来，形成了良好的社会氛围，促进了农村社会的和谐稳定。&lt;/p>
+&lt;h3 id="三推动了基层民主制度的创新与发展">三、推动了基层民主制度的创新与发展
+&lt;/h3>&lt;p>“后陈经验”的成功实践，证明了基层民主制度具有强大的生命力和适应性。它不仅丰富了中国特色社会主义民主政治的内涵，而且为其他地区提供了可借鉴的经验和模式，推动了全国范围内基层民主制度的创新与发展。&lt;/p>
+&lt;h3 id="四增强了村民的民主意识和参与能力">四、增强了村民的民主意识和参与能力
+&lt;/h3>&lt;p>在“后陈经验”的推动下，村民们逐渐认识到自己在村庄治理中的重要作用。他们积极参与到选举、决策、管理和监督等各个环节中来，不断提高自己的民主意识和参与能力，成为了推动农村发展的重要力量。&lt;/p>
+&lt;p>综上所述，“后陈经验”在提升农村治理水平、促进社会和谐稳定、推动基层民主制度创新与发展以及增强村民民主意识和参与能力等方面都具有重要的意义。&lt;/p></description></item><item><title>归档</title><link>https://wws-test.github.io/wwstack/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://wws-test.github.io/wwstack/archives/</guid><description/></item><item><title>搜索</title><link>https://wws-test.github.io/wwstack/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://wws-test.github.io/wwstack/search/</guid><description/></item><item><title>链接</title><link>https://wws-test.github.io/wwstack/%E9%93%BE%E6%8E%A5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://wws-test.github.io/wwstack/%E9%93%BE%E6%8E%A5/</guid><description>&lt;p>To use this feature, add &lt;code>links&lt;/code> section to frontmatter.&lt;/p>
+&lt;p>This page&amp;rsquo;s frontmatter:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">links&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub is the world&amp;#39;s largest software development platform.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.com&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://www.typescriptlang.org&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ts-logo-128.jpg&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>image&lt;/code> field accepts both local and external images.&lt;/p></description></item></channel></rss>
